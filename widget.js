@@ -1,8 +1,6 @@
 // Enclosed function to prevent clashing with other JS code on page.
 
-createWidget();
-
-function createWidget() {
+(function() {
   const widgetDiv = document.getElementById('widget');
   const containerDiv = document.createElement('div');
   widgetDiv.setAttribute('style', 'max-width:1000px; margin:auto;');
@@ -21,7 +19,7 @@ function createWidget() {
   const quote2 = createQuote('./images/moving-02.png', '$84.99');
   const quote3 = createQuote('./images/moving-02.png', '$84.99');
   const quote4 = createQuote('./images/CarLogo.jpg', '$92.99');
-
+  // Append quotes
   containerDiv.appendChild(quote1);
   containerDiv.appendChild(quote2);
   containerDiv.appendChild(quote3);
@@ -31,10 +29,9 @@ function createWidget() {
   const quoteBtn = createButton('GET QUOTE');
   containerDiv.appendChild(quoteBtn);
 
+  // Click quote button
   quoteBtn.addEventListener('click', (event) => {
-    
-    // Remove header
-    // removeView(containerDiv, header);
+
     // Remove all quotes
     containerDiv.removeChild(quote1);
     containerDiv.removeChild(quote2);
@@ -52,14 +49,16 @@ function createWidget() {
   // Append to DOM
   widgetDiv.appendChild(containerDiv);
 
-};
+})();
 
 
-// Create individula quote
+// Create individual quote
 function createQuote(logo, quotePrice) {
   const quoteDiv = document.createElement('div');
   quoteDiv.setAttribute('class', 'quotes');
+  // Add quote styling
   quoteDiv.setAttribute('style', quoteStyle());
+  // Setup body of quote
   quoteDiv.innerHTML = '<img src=' + logo + ' style=' + imgStyle() + '>' +
     '<div style=' + infoStyle() + '>' +
       '<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo deleniti atque recusandae commodi.</p>' +
@@ -70,6 +69,7 @@ function createQuote(logo, quotePrice) {
   return quoteDiv;
 }
 
+// Create Form view 
 function createFormView(containerDiv) {
   
   let header;
@@ -84,7 +84,7 @@ function createFormView(containerDiv) {
   const form = document.createElement('form');
   form.setAttribute('style', formStyle());
   form.innerHTML = '<input id="phone-number" type"text" placeholder="Phone Number" style=' + inputStyle() + '>' + 
-    '<input id="email" type"email" placeholder="email" style=' + inputStyle() + '>'
+    '<input id="email" type"email" placeholder="Email" style=' + inputStyle() + '>'
   ;
   containerDiv.appendChild(form);
 
@@ -92,6 +92,7 @@ function createFormView(containerDiv) {
   const submitBtn = createButton('SUBMIT');
   containerDiv.appendChild(submitBtn);
 
+  // Click submit button
   submitBtn.addEventListener('click', () => {
     // Get input values
     const phoneNumber = document.getElementById('phone-number').value;
