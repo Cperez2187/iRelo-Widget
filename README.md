@@ -1,2 +1,2 @@
 # iRelo-Widget
-Embeddable widget
+Embeddable widget by Cesar Perez
